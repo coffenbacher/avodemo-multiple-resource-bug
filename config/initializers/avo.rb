@@ -59,40 +59,7 @@ Avo.configure do |config|
     end
 
     section "Resources", icon: "academic-cap.svg", collapsable: true, collapsed: false do
-      group "Company", collapsable: true do
-        resource :projects
-        resource :team, visible: -> {
-          authorize current_user, Team, "index?", raise_exception: false
-        }
-        resource :team_membership, visible: -> {
-          authorize current_user, TeamMembership, "index?", raise_exception: false
-
-          false
-        }
-        resource :reviews
-      end
-
-      group "People", collapsable: true do
-        resource "UserResource", visible: -> do
-          authorize current_user, User, "index?", raise_exception: false
-        end
-        resource :people
-        resource :spouses
-      end
-
-      group "Education", collapsable: true do
-        resource :course
-        resource :course_link
-      end
-
-      group "Blog", collapsable: true do
-        resource :posts
-        resource :comments
-      end
-
-      group "Other", collapsable: true, collapsed: true do
-        resource :fish, label: "Fishies"
-      end
+      all_resources
     end
 
     section "Tools", icon: "heroicons/outline/finger-print", collapsable: true, collapsed: false do
